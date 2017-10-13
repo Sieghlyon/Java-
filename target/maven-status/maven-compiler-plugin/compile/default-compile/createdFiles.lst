@@ -1,3 +1,8 @@
-Client.class
 ClientManager.class
+TestJPA.class
+com\ynov\model\Client.class
 TestJDBC.class
+com\ynov\model\Compte.class
+com\ynov\model\servlet\AccountServlet.class
+com\ynov\model\servlet\Name.class
+com\ynov\model\Transaction.class

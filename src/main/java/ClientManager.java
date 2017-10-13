@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 //import com.mysql.cj.api.jdbc.Statement;
 import  java.sql.Statement;
 
+import com.ynov.model.Client;
+
 public class ClientManager {
 	public static final String DB_LOGIN = "root";
 	public static final String DB_PASSWD = "";
