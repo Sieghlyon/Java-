@@ -1,3 +1,4 @@
+package com.ynov.function;
 import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,13 +32,14 @@ public class TestJPA {
 				em.getTransaction().begin();
 					
 			Client client = new Client();
-			client.setLogin("btest");
-			client.setNom("123");
-			client.setPrenom("test");
-			client.setPassword("benoit");
+			client.setLogin("bourse");
+			client.setNom("seb");
+			client.setPrenom("boursier");
+			client.setPassword("no");
 			Compte compte = new Compte();
-			compte.setLibelle("compte courants");
-			compte.setNumero(24);
+			compte.setLibelle("Compte courant");
+		
+			compte.setMontant(-123456);
 			
 			List<Compte> listeComptes = new ArrayList<Compte>();
 			listeComptes.add(compte);
@@ -47,6 +49,8 @@ public class TestJPA {
 			
 			Transaction transe = new Transaction();
 			transe.setCompte(compte);
+			transe.setMontant(-95);
+			transe.setDestination(1);
 			List<Transaction> listeTransactions = new ArrayList<Transaction>();
 			listeTransactions.add(transe);
 			compte.setTransactions(listeTransactions);

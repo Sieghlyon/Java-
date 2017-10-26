@@ -23,7 +23,7 @@ public class Client
     private String password;
     private String login;
     
-    @OneToMany(mappedBy = "client", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "client", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     private List<Compte> comptes;
     
 	public String toString() {

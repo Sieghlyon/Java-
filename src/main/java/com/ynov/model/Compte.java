@@ -15,12 +15,34 @@ public class Compte {
 	private  String libelle;
 	private int numero ;
 	
+	private double montant;
+	
+	/**
+	 * @return the montant
+	 */
+	public double getMontant() {
+		return montant;
+	}
+	/**
+	 * @param montant the montant to set
+	 */
+	public void setMontant(double montant) {
+		this.montant = montant;
+	}
 	@OneToMany(mappedBy="compte", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	List<Transaction> transactions;
 	
 	@ManyToOne
 	@JoinColumn(name="clientID")
 	private Client client ;
+	
+	public void ajouter(int trans) {
+		this.montant += trans;
+	}
+	
+	public void enlever(int trans) {
+		this.montant -= trans;
+	}
 	
 	public String getLibelle() {
 		return libelle;
@@ -51,6 +73,11 @@ public class Compte {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public String toString() {
+		String line = "montant : " + this.montant + " id "+ this.id + "numero : " + this.numero ;
+		return line;
 	}
 	
 }

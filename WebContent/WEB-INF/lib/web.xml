@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+    id="WebApp_ID" version="3.0">
+
+    <display-name>WOW</display-name>
+    <description>
+        This is a simple web application with a source code organization
+        based on the recommendations of the Application Developer's Guide.
+    </description>
+
+    <servlet>
+        <servlet-name>NameServlet</servlet-name>
+        <servlet-class>com.ynov.bank.servlet.Name</servlet-class>
+   
+    </servlet>
+    
+    <servlet>
+        <servlet-name>AccountServlet</servlet-name>
+        <servlet-class>com.ynov.bank.servlet.AccountServlet</servlet-class>
+        
+    </servlet>
+    
+    <servlet>
+        <servlet-name>TransactionServlet</servlet-name>
+        <servlet-class>com.ynov.bank.servlet.TransactionServlet</servlet-class>
+        
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>NameServlet</servlet-name>
+        <url-pattern>/Name</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>AccountServlet</servlet-name>
+        <url-pattern>/Accounts</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>TransactionServlet</servlet-name>
+        <url-pattern>/Transaction</url-pattern>
+    </servlet-mapping>
+
+</web-app>     

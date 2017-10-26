@@ -29,7 +29,7 @@ public class Transaction {
 	}
 	private int origine ;
 	
-	private int destinaiton ;
+	private int destination ;
 	
 	private double montant ;
 	
@@ -51,11 +51,18 @@ public class Transaction {
 	public void setOrigine(int origine) {
 		this.origine = origine;
 	}
-	public int getDestinaiton() {
-		return destinaiton;
+	
+	/**
+	 * @return the destination
+	 */
+	public int getDestination() {
+		return destination;
 	}
-	public void setDestinaiton(int destinaiton) {
-		this.destinaiton = destinaiton;
+	/**
+	 * @param destination the destination to set
+	 */
+	public void setDestination(int destination) {
+		this.destination = destination;
 	}
 	public double getMontant() {
 		return montant;
