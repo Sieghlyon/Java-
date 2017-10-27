@@ -4,18 +4,42 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="compte")
 public class Compte {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Expose(serialize = true, deserialize = false)
 	private int id ;
 	
+	@Expose(serialize = true, deserialize = false)
 	private  String libelle;
+	
+	@Expose(serialize = true, deserialize = false)
 	private int numero ;
 	
+	@Expose(serialize = true, deserialize = false)
 	private double montant;
+	
+	@Expose(serialize = false, deserialize = false)
+	@OneToMany(mappedBy="compte", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	List<Transaction> transactions;
+	
+	@Expose(serialize = false, deserialize = false)
+	@ManyToOne
+	@JoinColumn(name="clientID")
+	private Client client ;
+	
+	public void ajouter(int trans) {
+		this.montant += trans;
+	}
+	
+	public void enlever(int trans) {
+		this.montant -= trans;
+	}
 	
 	/**
 	 * @return the montant
@@ -28,20 +52,6 @@ public class Compte {
 	 */
 	public void setMontant(double montant) {
 		this.montant = montant;
-	}
-	@OneToMany(mappedBy="compte", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	List<Transaction> transactions;
-	
-	@ManyToOne
-	@JoinColumn(name="clientID")
-	private Client client ;
-	
-	public void ajouter(int trans) {
-		this.montant += trans;
-	}
-	
-	public void enlever(int trans) {
-		this.montant -= trans;
 	}
 	
 	public String getLibelle() {

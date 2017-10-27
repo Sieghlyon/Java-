@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,23 +19,33 @@ public class CompteManager {
 	private static EntityManagerFactory factory;
 	private static final String PERSISTANCE_UNIT_NAME = "banque";
 	
-	public static void CreateCompte() {
+	public static void CreateCompte(Client client, int montant) {
 		EntityManager em = null;
 
 		Singleton.getInstance();
 		factory = Singleton.getFactory();
-		 em = factory.createEntityManager();
+		em = factory.createEntityManager();
+		
+		List<Compte> listeComptes = new ArrayList<Compte>();
 		 
-		 Transaction transe = new Transaction();
+		Compte compte = new Compte();
+		
+		compte.setLibelle("Compte Epargne");
+		compte.setClient(client);
+		compte.setMontant(montant);
+		
+		listeComptes = client.getComptes();
+		listeComptes.add(compte);
+		client.setComptes(listeComptes);
+		
+		em.getTransaction().begin();
 		 
-		 em.getTransaction().begin();
-		 
-		 
-		 em.persist(transe);
+		em.merge(client);
+		em.persist(compte);
 
 		em.getTransaction().commit();
 			
-		 em.close();
+		em.close();
 	
 	}
 	

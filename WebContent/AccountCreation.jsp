@@ -15,20 +15,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<link rel="stylesheet" type="text/css" href="inc/css.css"> 
-
-<title>NOOOOOOOOOOOOOOOOOOO</title>
+<title>Compte Creation</title>
 </head>
 <body>
-		<form method="post" action="Transaction">
-			<p> <label for="compte">Origine : </label> <input type="text" id="" name="compte" value="" size="20" maxlength="60" /> </p>
-			<p> <label for="montant">Montant : </label> <input type="text" id="" name="montant" value="" size="20" maxlength="60" /> </p>
-			<p> <label for="destination">Destination : </label> <input type="text" id="" name="destination" value="" size="20" maxlength="60" /> </p>
-			<p> <label for="libelle">Libelle : </label> <input type="text" id="" name="libelle" value="" size="20" maxlength="60" /> </p>
-            
-            <input type="submit" value="Transaction" class="" />
-        </form>
+	
+	<form method="post" action="Account-Creation">	
+		<p> <label for="montant"> Montant : </label> <input type="text" id="" name="montant" value="" size="20" maxlength="60" /> </p>       
+        <input type="submit" value="Account-Creation" class="" />
+      </form>
         
-        <br> Montant :  </br> <br> ${compte.getMontant()} </br>
 </body>
 </html>

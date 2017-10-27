@@ -21,12 +21,6 @@ public class Transaction {
 	@JoinColumn(name="commpteID")
 	private Compte compte ;
 	
-	public Compte getCompte() {
-		return compte;
-	}
-	public void setCompte(Compte compte) {
-		this.compte = compte;
-	}
 	private int origine ;
 	
 	private int destination ;
@@ -36,18 +30,31 @@ public class Transaction {
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public Compte getCompte() {
+		return compte;
+	}
+	
+	public void setCompte(Compte compte) {
+		this.compte = compte;
+	}
+	
 	public String getLibelle() {
 		return libelle;
 	}
+	
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
+	
 	public int getOrigine() {
 		return origine;
 	}
+	
 	public void setOrigine(int origine) {
 		this.origine = origine;
 	}
@@ -64,9 +71,11 @@ public class Transaction {
 	public void setDestination(int destination) {
 		this.destination = destination;
 	}
+	
 	public double getMontant() {
 		return montant;
 	}
+	
 	public void setMontant(double montant) {
 		this.montant = montant;
 	}

@@ -15,6 +15,7 @@
 <html lang="${language}">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="inc/css.css"> 
 <title>well whatever</title>
 </head>
 <body>
@@ -29,16 +30,20 @@
        <% Client test = (Client) request.getAttribute("client");%>
        
        		<p> bonjour :  </p>    <%= test.getPrenom() %>  <%= test.getNom() %>
-       		<p> comptes </p>
-       		
-       		<fmt:message key="test"/>
-       		<fmt:message key="bonjour"/>
-			${text}
-			${bonjour}
-			<c:forEach var = "i" items="${client.getComptes()}" >
-         	<p> Item </p> <c:out value = "${i}"/><p>
-      </c:forEach>
-			
-		
+       		<table>
+  				<tr>
+    				<th>Compte</th>
+    				<th>Montant</th>
+    				<th>Transaction</th>th>
+  				</tr>
+  				<tr>
+  					<c:forEach var = "i" items="${client.getComptes()}" >
+         			<td> <c:out value = "${i.getLibelle()}"/> </td> 
+         			<td> <c:out value = "${i.getMontant()}"/> </td>
+         			<td> <input type="button" value="Liste Transactions" onclick="document.location='http://localhost:8080/1/Transaction?id=${i.getId()}'">  </td>
+      				</c:forEach>
+  				</tr>
+			</table>
+       			
 </body>
 </html>

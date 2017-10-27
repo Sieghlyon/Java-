@@ -1,6 +1,5 @@
 package com.ynov.model.servlet;
 
-
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -11,57 +10,42 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ynov.function.CompteManager;
 import com.ynov.function.JPA;
-import com.ynov.function.Serialisation;
-import com.ynov.function.TransactionManager;
 import com.ynov.model.Client;
-import com.ynov.model.Transaction;
 
 /**
- * Servlet implementation class AccountServlet
+ * Servlet implementation class AccountCreationServlet
  */
-@WebServlet("/Accounts")
-public class AccountServlet extends HttpServlet {
+@WebServlet("/Account-Creation")
+public class AccountCreationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String ID_USER          = "user_id";
-	
+	public static final String VUE          = "/AccountCreation.jsp";
+       
     /**
      * @see HttpServlet#HttpServlet()
-     * default constructor
      */
-    public AccountServlet() {
+    public AccountCreationServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
-    
-   
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		// TODO Auto-generated method stub
-		String chaine;
 		Client client = new Client();
 		
 		HttpSession session = request.getSession();
 		int id = (int) session.getAttribute(ID_USER);
 		
 		client = JPA.loadClientByID(id);
-			
-		chaine = Serialisation.Json(client.getComptes());
-				
-		Transaction transaction = TransactionManager.loadTransactionById(7);
 		
-		request.setAttribute("json", chaine);
-		request.setAttribute("text", id);
 		request.setAttribute("client", client);
-		request.setAttribute("transaction", transaction);
 		
-		//response.getWriter().append("Served at: hello world   hhh " + client);		
-		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/listAccounts.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(VUE);
 		dispatcher.forward(request, response);
 	}
 
@@ -70,6 +54,16 @@ public class AccountServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		Client client = new Client();
+		
+		HttpSession session = request.getSession();
+		int id = (int) session.getAttribute(ID_USER);
+		
+		client = JPA.loadClientByID(id);
+		
+		int montant = Integer.parseInt(request.getParameter("montant"));
+		
+		CompteManager.CreateCompte(client, montant);
 		doGet(request, response);
 	}
 

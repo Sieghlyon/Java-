@@ -35,13 +35,15 @@ public class TransactionServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Client client = JPA.loadClientByID(9);
-		Transaction transaction = TransactionManager.loadTransactionById(7);
 		
-		request.setAttribute("client", client);
-		request.setAttribute("transaction", transaction);
+		String id = request.getParameter( "id" );
+		//Client client = JPA.loadClientByID(Integer.parseInt(id));
+		Compte compte = CompteManager.loadCompteByID(Integer.parseInt(id));
+		//Transaction transaction = TransactionManager.loadTransactionById(7);
+		//request.setAttribute("transaction", transaction);
 		
-		//response.getWriter().append("Served at: hello world    " + client);
+		//request.setAttribute("client", client);
+		request.setAttribute("compte", compte);
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/transaction.jsp");
 		dispatcher.forward(request, response);
@@ -51,8 +53,10 @@ public class TransactionServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String id_compte = request.getParameter( "id" );
 		// TODO Auto-generated method stub
-		String id_compte = request.getParameter("compte");
+		//String id_compte = request.getParameter("compte");
+		
 		String montant = request.getParameter("montant");
 		String libelle = request.getParameter("libelle");
 		String destination = request.getParameter("destination");
