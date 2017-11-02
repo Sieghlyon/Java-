@@ -14,8 +14,10 @@ import javax.servlet.http.HttpSession;
 import com.ynov.function.JPA;
 import com.ynov.function.Serialisation;
 import com.ynov.function.TransactionManager;
+import com.ynov.function.VirementManager;
 import com.ynov.model.Client;
 import com.ynov.model.Transaction;
+import com.ynov.model.Virement;
 
 /**
  * Servlet implementation class AccountServlet
@@ -52,7 +54,7 @@ public class AccountServlet extends HttpServlet {
 			
 		chaine = Serialisation.Json(client.getComptes());
 				
-		Transaction transaction = TransactionManager.loadTransactionById(7);
+		Virement transaction = VirementManager.loadVirementById(7);
 		
 		request.setAttribute("json", chaine);
 		request.setAttribute("text", id);

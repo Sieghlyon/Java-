@@ -1,5 +1,4 @@
 package com.ynov.function;
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +13,8 @@ import org.apache.logging.log4j.Logger;
 
 import com.ynov.model.Client;
 import com.ynov.model.Compte;
-import com.ynov.model.Transaction;
+import com.ynov.model.Virement;
+
 
 public class TestJPA {
 
@@ -25,8 +25,9 @@ public class TestJPA {
 	public static void main(String[] args) {
 		EntityManager em = null;
 
-		factory = Persistence.createEntityManagerFactory(PERSISTANCE_UNIT_NAME);
-		 em = factory.createEntityManager();
+		Singleton.getInstance();
+		factory = Singleton.getFactory();
+		em = factory.createEntityManager();
 		 
 		 try {
 				em.getTransaction().begin();
@@ -47,13 +48,13 @@ public class TestJPA {
 			client.setComptes(listeComptes);
 			compte.setClient(client);
 			
-			Transaction transe = new Transaction();
+			Virement transe = new Virement();
 			transe.setCompte(compte);
 			transe.setMontant(-95);
-			transe.setDestination(1);
-			List<Transaction> listeTransactions = new ArrayList<Transaction>();
+			//transe.setDestination(1);
+			List<Virement> listeTransactions = new ArrayList<Virement>();
 			listeTransactions.add(transe);
-			compte.setTransactions(listeTransactions);
+			compte.setVirements(listeTransactions);
 
 			em.persist(client);
 
@@ -78,9 +79,9 @@ public class TestJPA {
 				  
 			  Compte co = c.getComptes().get(0); 
 			  logger.debug("are transaction loaded ?" +
-			util.isLoaded(co, "transactions")); co.getTransactions();
+			util.isLoaded(co, "transactions")); co.getVirements();
 			logger.debug("are transaction loaded now ?" + util.isLoaded(co,"transactions")); 
-			for(Transaction tran: co.getTransactions()){
+			for(Virement tran: co.getVirements()){
 					logger.info(tran.toString()); 
 				} 
 			  

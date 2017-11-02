@@ -4,7 +4,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class Singleton {
-	private static Singleton instance;
+	private static Singleton instance = null;
 	private static final String PERSISTANCE_UNIT_NAME = "banque";
 	private static EntityManagerFactory factory;
 	

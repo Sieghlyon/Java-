@@ -34,15 +34,15 @@
   				<tr>
     				<th>Compte</th>
     				<th>Montant</th>
-    				<th>Transaction</th>th>
+    				<th>Transaction</th>
   				</tr>
-  				<tr>
-  					<c:forEach var = "i" items="${client.getComptes()}" >
+  				<c:forEach var = "i" items="${client.getComptes()}" >
+  				<tr>	
          			<td> <c:out value = "${i.getLibelle()}"/> </td> 
          			<td> <c:out value = "${i.getMontant()}"/> </td>
-         			<td> <input type="button" value="Liste Transactions" onclick="document.location='http://localhost:8080/1/Transaction?id=${i.getId()}'">  </td>
-      				</c:forEach>
+         			<td> <input type="button" value="Liste Transactions" onclick="document.location='http://localhost:8080/1/Transaction?id=${i.getId()}'">  </td>	
   				</tr>
+  				</c:forEach>
 			</table>
        			
 </body>

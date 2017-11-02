@@ -122,7 +122,7 @@ public class Connection {
 	    	}
 		 
         if (client.getPassword().equals(mdp) == false ) {
-            if ( mdp.length() < 3 ) {
+            if ( mdp.length() < 2 ) {
                 throw new Exception( "Le mot de passe doit contenir au moins 3 caractères." );
             }
         } 

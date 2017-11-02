@@ -20,8 +20,22 @@
 <title>NOOOOOOOOOOOOOOOOOOO</title>
 </head>
 <body>
-		<form method="post" action="Transaction">
-			<p> <label for="compte">Origine : </label> <input type="text" id="" name="compte" value="" size="20" maxlength="60" /> </p>
+			<table>
+  				<tr>
+    				<th>Transaction </th>
+    				<th>Montant</th>
+    				<th>Libelle</th>
+  				</tr>
+  				<c:forEach var = "i" items="${compte.getTransactions()}" >
+  				<tr>
+         			<td> <c:out value = "Virement numero : ${i.getId()}"/> </td> 
+         			<td> <c:out value = "${i.getMontant()}"/> </td>
+         			<td> <c:out value = "${i.getLibelle()}"/> </td>
+  				</tr>
+  				</c:forEach>
+			</table>
+			
+		<form method="post" action="Transaction?id=${compte.getId()}">
 			<p> <label for="montant">Montant : </label> <input type="text" id="" name="montant" value="" size="20" maxlength="60" /> </p>
 			<p> <label for="destination">Destination : </label> <input type="text" id="" name="destination" value="" size="20" maxlength="60" /> </p>
 			<p> <label for="libelle">Libelle : </label> <input type="text" id="" name="libelle" value="" size="20" maxlength="60" /> </p>
@@ -29,6 +43,6 @@
             <input type="submit" value="Transaction" class="" />
         </form>
         
-        <br> Montant :  </br> <br> ${compte.getMontant()} </br>
+        <br> Montant du Compte:  </br> <br> ${compte.getMontant()} </br>
 </body>
 </html>

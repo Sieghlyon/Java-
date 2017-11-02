@@ -1,5 +1,7 @@
 package com.ynov.model;
 
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,70 +17,67 @@ public class Transaction {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id ;
 	
-	private String libelle ;
-	
-	@ManyToOne
-	@JoinColumn(name="commpteID")
-	private Compte compte ;
-	
-	private int origine ;
-	
-	private int destination ;
-	
 	private double montant ;
 	
+	private Date date ;
+	
+	/**
+	 * @return the id
+	 */
 	public int getId() {
 		return id;
 	}
-	
+
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public Compte getCompte() {
-		return compte;
-	}
-	
-	public void setCompte(Compte compte) {
-		this.compte = compte;
-	}
-	
-	public String getLibelle() {
-		return libelle;
-	}
-	
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
-	}
-	
-	public int getOrigine() {
-		return origine;
-	}
-	
-	public void setOrigine(int origine) {
-		this.origine = origine;
-	}
-	
+
 	/**
-	 * @return the destination
+	 * @return the montant
 	 */
-	public int getDestination() {
-		return destination;
-	}
-	/**
-	 * @param destination the destination to set
-	 */
-	public void setDestination(int destination) {
-		this.destination = destination;
-	}
-	
 	public double getMontant() {
 		return montant;
 	}
-	
+
+	/**
+	 * @param montant the montant to set
+	 */
 	public void setMontant(double montant) {
 		this.montant = montant;
 	}
-	
-	
+
+	/**
+	 * @return the date
+	 */
+	public Date getDate() {
+		return date;
+	}
+
+	/**
+	 * @param date the date to set
+	 */
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	/**
+	 * @return the destination
+	 */
+	public Compte getDestination() {
+		return destination;
+	}
+
+	/**
+	 * @param destination the destination to set
+	 */
+	public void setDestination(Compte destination) {
+		this.destination = destination;
+	}
+
+	@ManyToOne
+	@JoinColumn(name="account")
+	private Compte destination ;
 }

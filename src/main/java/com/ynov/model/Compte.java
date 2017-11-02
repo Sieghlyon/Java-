@@ -26,7 +26,7 @@ public class Compte {
 	
 	@Expose(serialize = false, deserialize = false)
 	@OneToMany(mappedBy="compte", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	List<Transaction> transactions;
+	List<Virement> virements;
 	
 	@Expose(serialize = false, deserialize = false)
 	@ManyToOne
@@ -72,11 +72,11 @@ public class Compte {
 	public void setClient(Client client) {
 		this.client = client;
 	}
-	public List<Transaction> getTransactions() {
-		return transactions;
+	public List<Virement> getVirements() {
+		return virements;
 	}
-	public void setTransactions(List<Transaction> transactions) {
-		this.transactions = transactions;
+	public void setVirements(List<Virement> virements) {
+		this.virements = virements;
 	}
 	public int getId() {
 		return id;
