@@ -10,23 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.ynov.function.CompteManager;
 import com.ynov.function.ClientManager;
-import com.ynov.model.Client;
+import com.ynov.function.CompteManager;
+import com.ynov.function.VirementManager;
+import com.ynov.model.Compte;
 
 /**
- * Servlet implementation class AccountCreationServlet
+ * Servlet implementation class ChangePasswordServlet
  */
-@WebServlet("/Account-Creation")
-public class AccountCreationServlet extends HttpServlet {
+@WebServlet("/ChangePassword")
+public class ChangePasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final String ID_USER          = "user_id";
-	public static final String VUE          = "/AccountCreation.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AccountCreationServlet() {
+    public ChangePasswordServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,16 +35,7 @@ public class AccountCreationServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Client client = new Client();
-		
-		HttpSession session = request.getSession();
-		int id = (int) session.getAttribute(ID_USER);
-		
-		client = ClientManager.loadClientByID(id);
-		
-		request.setAttribute("client", client);
-		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(VUE);
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Password.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -53,18 +43,13 @@ public class AccountCreationServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		Client client = new Client();
+		HttpSession session = request.getSession(false);
 		
-		HttpSession session = request.getSession();
-		int id = (int) session.getAttribute(ID_USER);
+		String password = request.getParameter("password");
+		int id = (int) session.getAttribute("user_id");
 		
-		client = ClientManager.loadClientByID(id);
+		ClientManager.ChangePassword(password, id);
 		
-		int montant = Integer.parseInt(request.getParameter("montant"));
-		String libelle = request.getParameter("libelle");
-		
-		CompteManager.CreateCompte(client, montant, libelle);
 		doGet(request, response);
 	}
 

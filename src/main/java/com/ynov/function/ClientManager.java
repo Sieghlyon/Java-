@@ -7,7 +7,7 @@ import javax.persistence.PersistenceUtil;
 
 import com.ynov.model.Client;
 
-public class JPA {
+public class ClientManager {
 	private static EntityManagerFactory factory;
 	private static final String PERSISTANCE_UNIT_NAME = "banque";
 	//private static Logger logger = LogManager.getLogger(JPA.class);
@@ -42,9 +42,27 @@ public class JPA {
 			 Client client = new Client();
 			 
 			 em.persist(client);
+			 em.getTransaction().commit();
 			 em.close();
 			
 			 
 			 return client;
+	 }
+	 
+	 public static void ChangePassword(String motdepasse, int id) {
+		 EntityManager em = null;
+
+		 Singleton.getInstance();
+		 factory = Singleton.getFactory();
+		 em = factory.createEntityManager();
+			 
+		 em.getTransaction().begin();
+			 
+		 Client client = em.find(Client.class, id);
+		 client.setPassword(motdepasse);
+			 
+		 em.merge(client);
+		 em.getTransaction().commit();
+		 em.close();
 	 }
 }

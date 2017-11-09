@@ -18,25 +18,25 @@
 <title>Login</title>
 </head>
 <body>
-<form>
+
+		<form>
             <select id="language" name="language" onchange="submit()">
-                <option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
-                <option value="nl" ${language == 'nl' ? 'selected' : ''}>Nederlands</option>
-                <option value="es" ${language == 'es' ? 'selected' : ''}>Español</option>
+            	<option value="fr" ${language == 'fr' ? 'selected' : ''}>Français</option>
+                <option value="en" ${language == 'en' ? 'selected' : ''}>English</option>          
             </select>
         </form>
         
 		<form method="post" action="Login">
             <fieldset>
-                <legend>Connexion</legend>
-                <p>Vous pouvez vous connecter via ce formulaire.</p>
+                <legend> <fmt:message key="connexion"/> </legend>
+                <p><fmt:message key="login_form"/></p>
 
-                <label for="nom">Adresse login <span class="requis">*</span></label>
+                <label for="nom"> <fmt:message key="login"/> <span class="requis">*</span></label>
                 <input type="login" id="login" name="login" value="<c:out value="${utilisateur.login}"/>" size="20" maxlength="60" />
                 <span class="erreur">${form.erreurs['login']}</span>
                 <br />
 
-                <label for="password">Mot de passe <span class="requis">*</span></label>
+                <label for="password"> <fmt:message key="password"/> <span class="requis">*</span></label>
                 <input type="password" id="password" name="password" value="" size="20" maxlength="20" />
                 <span class="erreur">${form.erreurs['password']}</span>
                 <br />

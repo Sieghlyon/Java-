@@ -20,38 +20,38 @@
   	src="https://code.jquery.com/jquery-3.2.1.js"
   	integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
   	crossorigin="anonymous"></script>
-	<script type="text/javascript" src="inc/AJAX2.js"></script>
-
-<title>Transaction</title>
+	<script type="text/javascript" src="inc/AJAX.js"></script>
+	
+<title>Virement</title>
 </head>
 <body>
         <div> <fmt:message key='page'/> : <div id="page"> </div> </div>
 			<table>
   				<tr id="row">
-    				<th> <fmt:message key="transaction"/> </th>
-    				<th> <fmt:message key="montant"/> </th>
-    				<th> <fmt:message key="date"/> </th>
+    				<th>Transaction </th>
+    				<th>Montant</th>
+    				<th>Libelle</th>
   				</tr>
-  				
 			</table>
 			
-		<input type="button" value="Previous_Page"  onclick="previousPage()">
-        
-        <input type="button" value="Next_Page"  onclick="nextPage()">
-			
-		<form method="post" action="Transaction?id=${compte.getId()}">
-			<p> <label for="montant">Montant : </label> <input type="text" id="" name="montant" value="" size="20" maxlength="60" /> </p>
+		<form method="post" action="Virement?id=${compte.getId()}">
+			<p> <label for="montant"> <fmt:message key="montant"/> : </label> <input type="text" id="" name="montant" value="" size="20" maxlength="60" /> </p>
+			<p> <label for="destination"><fmt:message key="destination"/> : </label> <input type="text" id="" name="destination" value="" size="20" maxlength="60" /> </p>
+			<p> <label for="libelle"><fmt:message key="libelle"/> : </label> <input type="text" id="" name="libelle" value="" size="20" maxlength="60" /> </p>
             
-            <input type="submit" value="Transaction" class="" />
+            <input type="submit" value="Virement" class="" />
         </form>
         
-        <br> Montant du Compte:  </br> <br> ${compte.getMontant()} </br>
+        <br> <fmt:message key="montant_account"/>  </br> <br> ${compte.getMontant()} </br>
         
         
+        <input type="button" value="Previous_Page"  onclick="previousPage()">
         
-    <script>
-		var page = (${page} - 1);
-		var id = ${id};
-	</script> 
+        <input type="button" value="Next_Page"  onclick="nextPage()">
+        
+         <script>
+			var page = (${page} - 1);
+			var id = ${id};
+		</script> 
 </body>
 </html>

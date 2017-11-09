@@ -1,6 +1,6 @@
 package com.ynov.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,17 +10,42 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="transaction")
 public class Transaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Expose(serialize = true, deserialize = true)
 	private int id ;
 	
+	@Expose(serialize = true, deserialize = true)
 	private double montant ;
 	
+	@Expose(serialize = true, deserialize = true)
 	private Date date ;
 	
+	@ManyToOne
+	@JoinColumn(name="compte")
+	private Compte compte ;
+	
+	
+	
+	/**
+	 * @return the compte
+	 */
+	public Compte getCompte() {
+		return compte;
+	}
+
+	/**
+	 * @param compte the compte to set
+	 */
+	public void setCompte(Compte compte) {
+		this.compte = compte;
+	}
+
 	/**
 	 * @return the id
 	 */

@@ -10,23 +10,18 @@
 <%@ page import="com.ynov.model.Client" %>
 <%@ page import="com.ynov.model.Compte" %>
 <%@ page import="com.ynov.model.Transaction" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="${language}">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Compte Creation</title>
+<link rel="stylesheet" type="text/css" href="inc/css.css"> 
+<title>Password</title>
 </head>
 <body>
-
-	
-	<form method="post" action="Account-Creation">	
-		<p> <label for="libelle"> <fmt:message key="libelle"/> : </label> <input type="text" id="" name="libelle" value="" size="20" maxlength="60" /> </p>   
-		<p> <label for="montant"> <fmt:message key="montant"/> : </label> <input type="text" id="" name="montant" value="" size="20" maxlength="60" /> </p>       
-        <input type="submit" value="Account-Creation" class="" />
-      </form>
-      
-      
-        
+		<form method="post" action="ChangePassword">
+			<p> <label for="password"> <fmt:message key="password"/> : </label> <input type="text" id="" name="password" value="" size="20" maxlength="60" /> </p>
+            
+            <input type="submit" value="ChangePassword" class="" />
+        </form>
 </body>
 </html>

@@ -59,7 +59,7 @@ public class Connection {
     		factory = Singleton.getFactory();
     		em = factory.createEntityManager();
     		 
-    		TypedQuery<Client> tQuery = em.createQuery("FROM Client WHERE login='" + login + "'AND password='" + mdp + "'", Client.class);
+    		TypedQuery<Client> tQuery = em.createQuery("FROM Client WHERE login='" + login + "'", Client.class);
     		utilisateur = tQuery.getSingleResult();
     		 
         	em.close();
@@ -83,12 +83,11 @@ public class Connection {
 		
     	try {
 		
-		 
-		 TypedQuery<Client> tQuery = em.createQuery("FROM Client WHERE login='" + login + "'AND password='" + mdp + "'", Client.class);
+		 TypedQuery<Client> tQuery = em.createQuery("FROM Client WHERE login='" + login + "'", Client.class);
 		 client = tQuery.getSingleResult();
 		 
     	}catch(Exception e ) {
-    		throw new Exception( "Le login n'existe pas." );
+    		throw new Exception( "Le login n'existe pas.");
     	}finally {
     		em.close();
     	}

@@ -1,64 +1,56 @@
 package com.ynov.model.servlet;
 
-
 import java.io.IOException;
+import java.util.List;
 
-import javax.servlet.RequestDispatcher;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.ynov.function.ClientManager;
+import com.ynov.function.CompteManager;
 import com.ynov.function.Serialisation;
+import com.ynov.function.Singleton;
 import com.ynov.function.TransactionManager;
 import com.ynov.function.VirementManager;
 import com.ynov.model.Client;
-import com.ynov.model.Transaction;
+import com.ynov.model.Compte;
 import com.ynov.model.Virement;
 
 /**
- * Servlet implementation class AccountServlet
+ * Servlet implementation class AjaxServlet
  */
-@WebServlet("/Accounts")
-public class AccountServlet extends HttpServlet {
+@WebServlet("/AjaxTransaction")
+public class AjaxTransactionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final String ID_USER          = "user_id";
-	
+	private static EntityManagerFactory factory;
+	private static final String PERSISTANCE_UNIT_NAME = "banque";
+       
     /**
      * @see HttpServlet#HttpServlet()
-     * default constructor
      */
-    public AccountServlet() {
+    public AjaxTransactionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
-    
-   
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		// TODO Auto-generated method stub
-		Client client = new Client();
+			 
+		String id = request.getParameter("id");
+		String page = request.getParameter("page");
+		String chaine = TransactionManager.getTransaction(id, page);
 		
-		HttpSession session = request.getSession();
-		int id = (int) session.getAttribute(ID_USER);
 		
-		client = ClientManager.loadClientByID(id);
-				
-		Virement transaction = VirementManager.loadVirementById(7);
-		
-		request.setAttribute("text", id);
-		request.setAttribute("client", client);
-		request.setAttribute("transaction", transaction);
-		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/listAccounts.jsp");
-		dispatcher.forward(request, response);
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json");
+        response.getWriter().write(chaine);
 	}
 
 	/**

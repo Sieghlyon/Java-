@@ -8,21 +8,27 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.ynov.model.Compte;
+import com.ynov.model.Transaction;
+import com.ynov.model.Virement;
 
 public class Serialisation {
-	private final static Gson builder = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();;
+	private final static Gson builder = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
 	
 	
-	public static String Json(List<Compte> comptes) throws IOException {
-		Compte account = new Compte();
+	public static String Json(List<Virement> comptes) throws IOException {
 		String chaine = "";
 		
-		for (Compte compte : comptes) {
-			chaine += builder.toJson(compte);
-			System.out.println(chaine);
-		}
+		chaine += builder.toJson(comptes);
 		
 		return chaine;
+	}
+	
+	public static String JsonTransaction(List<Transaction> transes) throws IOException {
+		String chaine2 = "";
+		
+		chaine2 += builder.toJson(transes);
+		System.out.println(transes);
+		return chaine2;
 	}
 	
 	

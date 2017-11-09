@@ -19,7 +19,7 @@ public class CompteManager {
 	private static EntityManagerFactory factory;
 	private static final String PERSISTANCE_UNIT_NAME = "banque";
 	
-	public static void CreateCompte(Client client, int montant) {
+	public static void CreateCompte(Client client, int montant, String libelle) {
 		EntityManager em = null;
 
 		Singleton.getInstance();
@@ -30,7 +30,7 @@ public class CompteManager {
 		 
 		Compte compte = new Compte();
 		
-		compte.setLibelle("Compte Epargne");
+		compte.setLibelle(libelle);
 		compte.setClient(client);
 		compte.setMontant(montant);
 		
@@ -40,8 +40,8 @@ public class CompteManager {
 		
 		em.getTransaction().begin();
 		 
-		em.merge(client);
 		em.persist(compte);
+		em.merge(client);
 
 		em.getTransaction().commit();
 			

@@ -80,6 +80,7 @@ public class LoginServlet extends HttpServlet {
         	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(ServletHelper.LOGIN);
         	dispatcher.forward( request, response );
         }
+        
         /* 
          * RequestDispatcher dispatcher = getServletCOntext().getRequestDispatcher(ServletHelper.ACCOUNTS);
          */

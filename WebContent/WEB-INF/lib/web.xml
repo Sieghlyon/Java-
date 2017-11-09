@@ -12,7 +12,7 @@
     </description>
     
     <session-config> 
-		<session-timeout>3600</session-timeout>
+		<session-timeout>0</session-timeout>
 	</session-config>
 
     <servlet>
@@ -40,6 +40,12 @@
     </servlet>
     
     <servlet>
+        <servlet-name>VirementServlet</servlet-name>
+        <servlet-class>com.ynov.bank.servlet.VirementServlet</servlet-class>
+        
+    </servlet>
+    
+    <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.ynov.bank.servlet.LoginServlet</servlet-class>
         
@@ -48,6 +54,24 @@
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>com.ynov.bank.servlet.LogoutServlet</servlet-class>
+        
+    </servlet>
+    
+    <servlet>
+        <servlet-name>AjaxServlet</servlet-name>
+        <servlet-class>com.ynov.bank.servlet.AjaxServlet</servlet-class>
+        
+    </servlet>
+    
+    <servlet>
+        <servlet-name>AjaxTransactionServlet</servlet-name>
+        <servlet-class>com.ynov.bank.servlet.AjaxTransactionServlet</servlet-class>
+        
+    </servlet>
+    
+    <servlet>
+        <servlet-name>ChangePasswordServlet</servlet-name>
+        <servlet-class>com.ynov.bank.servlet.ChangePasswordServlet</servlet-class>
         
     </servlet>
 
@@ -72,6 +96,11 @@
     </servlet-mapping>
     
     <servlet-mapping>
+        <servlet-name>VirementServlet</servlet-name>
+        <url-pattern>/Virement</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/Login</url-pattern>
     </servlet-mapping>
@@ -79,6 +108,21 @@
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>AjaxServlet</servlet-name>
+        <url-pattern>/Ajax</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>AjaxTransactionServlet</servlet-name>
+        <url-pattern>/AjaxTransaction</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>ChangePasswordServlet</servlet-name>
+        <url-pattern>/ChangePassword</url-pattern>
     </servlet-mapping>
 
 </web-app>     

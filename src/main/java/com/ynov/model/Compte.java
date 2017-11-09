@@ -29,6 +29,10 @@ public class Compte {
 	List<Virement> virements;
 	
 	@Expose(serialize = false, deserialize = false)
+	@OneToMany(mappedBy="compte", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	List<Transaction> transactions;
+	
+	@Expose(serialize = false, deserialize = false)
 	@ManyToOne
 	@JoinColumn(name="clientID")
 	private Client client ;
@@ -89,5 +93,21 @@ public class Compte {
 		String line = "montant : " + this.montant + " id "+ this.id + "numero : " + this.numero ;
 		return line;
 	}
+
+	/**
+	 * @return the transactions
+	 */
+	public List<Transaction> getTransactions() {
+		return transactions;
+	}
+
+	/**
+	 * @param transactions the transactions to set
+	 */
+	public void setTransactions(List<Transaction> transactions) {
+		this.transactions = transactions;
+	}
+	
+	
 	
 }

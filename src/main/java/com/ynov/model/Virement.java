@@ -1,6 +1,6 @@
 package com.ynov.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,11 +17,13 @@ import com.google.gson.annotations.Expose;
 public class Virement {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Expose(serialize = true, deserialize = false)
+	@Expose(serialize = true, deserialize = true)
 	private int id ;
 	
+	@Expose(serialize = true, deserialize = true)
 	private String libelle ;
 	
+	@Expose(serialize = true, deserialize = true)
 	private Date date ;
 	
 	
@@ -34,6 +36,7 @@ public class Virement {
 	@JoinColumn(name="destination")
 	private Compte destination ;
 	
+	@Expose(serialize = true, deserialize = true)
 	private double montant ;
 	
 	public int getId() {
